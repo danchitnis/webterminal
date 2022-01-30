@@ -5,19 +5,24 @@ import {
   Spacer,
   Text,
   HStack,
-  VStack,
   Select,
   RadioGroup,
   Stack,
   Radio,
   Textarea,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
 } from '@chakra-ui/react';
 import React from 'react';
 
 import { ComPort } from './comms/comms';
+import TextTerminal from './textTerminal';
 
-let comPort = new ComPort();
-let dataRX = [] as number[];
+const comPort = new ComPort();
+const dataRX = [] as number[];
 
 const Terminal = () => {
   // Create the count state.
@@ -34,7 +39,7 @@ const Terminal = () => {
       for (let i = 0; i < data.length; i++) {
         dataRX.push(data[i]);
       }
-      //setTextRx(data);
+      // setTextRx(data);
       setIsNewRxData(true);
     };
   };
@@ -67,7 +72,6 @@ const Terminal = () => {
     <>
       <Heading>Terminal</Heading>
       <Spacer p={2} />
-
       <HStack>
         <Button
           colorScheme="blue"
@@ -88,33 +92,28 @@ const Terminal = () => {
         >
           Disconnect
         </Button>
-        <Spacer />
-        <Box
-          border="solid 1px"
-          borderColor="cyan.500"
-          borderRadius="10px"
-          padding="10px"
-        >
-          <RadioGroup
-            onChange={setDisplayType}
-            value={displayType}
-            colorScheme="blue"
-          >
-            <Stack direction="row">
-              <Radio value="byte">Byte</Radio>
-              <Radio value="hex">Hex</Radio>
-              <Radio value="char">Char</Radio>
-            </Stack>
-          </RadioGroup>
-        </Box>
       </HStack>
+      <Spacer p={2} />
 
-      <Box>
-        <Textarea resize={'none'} value={textRx} isReadOnly={true} h="70vh" />
-      </Box>
 
-      <Box></Box>
-      <Text>Hello World</Text>
+      <Tabs isFitted variant='enclosed'>
+        <TabList mb='1em'>
+          <Tab>Terminal</Tab>
+          <Tab>Plot</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <TextTerminal />
+          </TabPanel>
+          <TabPanel>
+            <p>Plot</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+
+
+
+
     </>
   );
 };
