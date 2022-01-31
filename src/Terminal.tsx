@@ -112,9 +112,6 @@ const Terminal = () => {
       <Box>
         <Textarea resize={'none'} value={textRx} isReadOnly={true} h="70vh" />
       </Box>
-
-      <Box></Box>
-      <Text>Hello World</Text>
     </>
   );
 };
