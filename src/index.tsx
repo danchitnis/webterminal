@@ -1,27 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Terminal from './Terminal';
+//import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
+import Layout from './layout';
 
-import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
-
-const config: ThemeConfig = {
-  initialColorMode: 'dark',
-  useSystemColorMode: false,
-};
-
-const customTheme = extendTheme({ config });
-
-ReactDOM.render(
-  <React.StrictMode>
-    <ChakraProvider theme={customTheme}>
-      <Terminal />
-    </ChakraProvider>
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+const container = document.getElementById('root');
+const root = createRoot(container!); // createRoot(container!) if you use TypeScript
+root.render(<Layout />);
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
-// Learn more: https://snowpack.dev/concepts/hot-module-replacement
+// Learn more: https://www.snowpack.dev/#hot-module-replacement
 if (import.meta.hot) {
-  import.meta.hot.accept();
+  import.meta.hot?.accept(({ module }) => {});
 }

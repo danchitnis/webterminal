@@ -1,4 +1,5 @@
-.snowpack
+.parcel-cache
 build
 node_modules
 .vercel
+dist

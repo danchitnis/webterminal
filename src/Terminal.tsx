@@ -16,8 +16,8 @@ import React from 'react';
 
 import { ComPort } from './comms/comms';
 
-let comPort = new ComPort();
-let dataRX = [] as number[];
+const comPort = new ComPort();
+const dataRX = [] as number[];
 
 const Terminal = () => {
   // Create the count state.
@@ -34,7 +34,7 @@ const Terminal = () => {
       for (let i = 0; i < data.length; i++) {
         dataRX.push(data[i]);
       }
-      //setTextRx(data);
+      // setTextRx(data);
       setIsNewRxData(true);
     };
   };
@@ -42,7 +42,7 @@ const Terminal = () => {
   const onBtnDisconnectClick = () => {
     comPort.portClose();
     setIsConnected(false);
-    setTextRx(textRx + 'Disconnected');
+    setTextRx(`${textRx}Disconnected`);
   };
 
   React.useEffect(() => {
